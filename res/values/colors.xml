@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#7F000000</color>
+    <color name="edit_mode">#00FFFF</color>
+    <color name="nomal_mode">#FFFFFFFF</color>
+    <color name="lock">#FFA500</color>
+    <color name="unlock">#ADFF2F</color>
+    <color name="connected">#FFFF00</color>
+    <color name="disconnected">#FF0000</color>
+    <color name="loading">#8FBC8F</color>
+    <color name="havent_admin_permission">#FF69B4</color>
+    <color name="gray">#808080</color>
+    <color name="lightblue">#ADD8E6</color>
+    
+    
+</resources>
