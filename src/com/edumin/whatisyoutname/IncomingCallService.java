@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -67,7 +68,7 @@ public class IncomingCallService extends Service {
 				int y = (int)(event.getRawY() - START_Y);	//이동한 거리
 
 				//터치해서 이동한 만큼 이동 시킨다
-				mParams.x = PREV_X + x;
+				mParams.x = PREV_X - x;
 				mParams.y = PREV_Y + y;
 
 				optimizePosition();		//뷰의 위치 최적화
@@ -101,6 +102,12 @@ public class IncomingCallService extends Service {
 				mLinearLayoutPopupView = new LinearLayout(mIncomingCallService);	
 				mLinearLayoutPopupView.setOnTouchListener(mViewTouchListener);										//팝업뷰에 터치 리스너 등록
 				mLinearLayoutPopupView.setBackgroundColor(getResources().getColor(R.color.lightblue));
+				
+				LinearLayout.LayoutParams mLayoutParamsPopUpView = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				mLinearLayoutPopupView.setLayoutParams(mLayoutParamsPopUpView);
+				
+				
+				
 				
 
 				//뷰 생성
@@ -155,8 +162,8 @@ public class IncomingCallService extends Service {
 		DisplayMetrics matrix = new DisplayMetrics();
 		mWindowManager.getDefaultDisplay().getMetrics(matrix);		//화면 정보를 가져와서
 
-		MAX_X = matrix.widthPixels - mLinearLayoutPopupView.getWidth();			//x 최대값 설정
-		MAX_Y = matrix.heightPixels - mLinearLayoutPopupView.getHeight();			//y 최대값 설정
+		MAX_X = matrix.widthPixels; // - mLinearLayoutPopupView.getWidth();			//x 최대값 설정
+		MAX_Y = matrix.heightPixels; // - mLinearLayoutPopupView.getHeight();			//y 최대값 설정
 	}
 
 	private void optimizePosition() {

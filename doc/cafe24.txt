@@ -1,0 +1,125 @@
+www.cafe24.com
+
+
+우분투 12.04 로 설치
+
+IP : 175.126.167.40
+
+
+* 업데이트
+	# apt-get update
+* add-apt-repository를 사용하기 위한 패키지 설치
+	# apt-get install python-software-properties
+* Java 설치
+	# add-apt-repository ppa:webupd8team/java
+	# apt-get update
+	# apt-get install oracle-java7-installer
+	# java -version  (설치확인)
+* JDBC 설치
+	# apt-get install libmysql-java	
+	# echo 'export JAVA_HOME=/usr/lib/jvm/java-7-oracle' >> /etc/profile
+	# echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile
+	세션 재접속
+	# mkdir /$JAVA_HOME/lib/ext/
+	# cp mysql-connector-java-5.1.18-bin.jar $JAVA_HOME/lib/ext/
+	# echo 'export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/jre/lib/ext/mysql-connector-java-5.1.18-bin.jar' >> /etc/profile
+	세션 재접속
+* 아파치 설치
+	# apt-get install apache2
+	# service apache2 restart
+	http://14.63.213.45/ 이렇게 들어가서 동작 확인
+	기본 경로는 /var/www 여기이다.
+* mysql-client 설치
+	# apt-get install mysql-client
+* mysql-server 설치 (http://thdev.net/326)
+	# apt-get install mysql-server
+	# netstat -tap | grep mysql (서비스 동작 확인)
+	# /etc/init.d/mysql restart
+	# mysql -u root -p (my sql 접속)
+	비번 설정 안했을 경우 dpkg-reconfigure mysql-server-5.5
+	DB 접속 후 데이터베이스 생성 (create database 이름;)
+
+* mysql 외부에서 접속 가능하게 만들기 (http://beizix.egloos.com/2560401)
+	mysql> grant all privileges on *.* to 'root'@'%' identified by 'root의 패스워드';
+
+delete from USER_TABLE where USER_ID='LGL24e6e512b5';
+
+use goonInPhone_mdm;
+
+
+
+delete from DEPENDENT_PACKAGE_TABLE where DEPENDENT_PACKAGE_FINGERPRINT='samsung/c1skt/c1skt:4.0.4/IMM76D/E210SKSALJ1:user/release-keys';
+delete from PROTECT_TABLE  where PROTECT_KEY='com.android.settings.Settings$AccessibilitySettingsActivity';
+delete from PROTECT_TABLE  where PROTECT_KEY='com.android.settingsaccessibility.SettingsAccessibilityActivity';
+insert into DEPENDENT_PACKAGE_TABLE values('samsung/c1ktt/c1ktt:4.3/JSS15J/E210KKKUGND3:user/release-keys','com.android.contacts','com.android.phone','com.android.mms');
+insert into PROTECT_TABLE values('com.android.settings.Settings$DeviceAdminSettingsActivity','CLASS_NAME');
+insert into PROTECT_TABLE values('com.lge.lmk.activities.LmkMainActivity','CLASS_NAME');
+insert into PROTECT_TABLE values('com.android.settings.applications.InstalledAppDetails','CLASS_NAME');
+insert into PROTECT_TABLE values('com.android.settings.Settings$ManageApplicationsActivity','CLASS_NAME');
+
+=-----
+
+delete from DEPENDENT_PACKAGE_TABLE where DEPENDENT_PACKAGE_FINGERPRINT='lge/g3_lgu_kr/g3:4.4.2/KVT49L.F400L10i/F400L10i.1406016670:user/release-keys';
+									 lge/g3_lgu_kr/g3:4.4.2/KVT49L.F400L10i/F400L10i.1406016670:user/release-keys
+delete from USER_TABLE where USER_ID='LGF400L8d15e2e1';
+
+ALTER TABLE MANAGER_TABLE drop MANAGER_NOTI_MESSAGE;
+ALTER TABLE MANAGER_TABLE ADD MANAGER_NOTI_STATUS_USER_APP varchar(45) NOT NULL;
+
+
+ALTER TABLE DEPENDENT_PACKAGE_TABLE ADD DEPENDENT_PACKAGE_SETTINGS varchar(45) NOT NULL;
+
+update MANAGER_TABLE set (MANAGER_NOTI_STATUS_USER_APP,MANAGER_NOTI_STATUS_USER_LOCK,MANAGER_NOTI_STATUS_USER_CONNECTTION,MANAGER_NOTI_MESSAGE)=('FALSE','FALSE','FALSE',' ') where MANAGER_PHONE_NUMBER='01089161649';
+
+------
+
+update USER_TABLE set USER_LOCK_STATUS='UN_LOCK,UN_LOCK,UN_LOCK,UN_LOCK,UN_LOCK,UN_LOCK,UN_LOCK' where USER_ID='LGF400L8d15e2e1';
+
+update USER_TABLE set USER_APP_STATUS='OFF,OFF,OFF' where USER_ID='LGF400L8d15e2e1';
+update CURRENT_TABLE set CURRENT_PROTECT_VERSION ='0' where USER_ID='CURRENT_PRIMARY_KEY';
+
+
+ALTER TABLE DEPENDENT_PACKAGE_TABLE ADD DEPENDENT_PACKAGE_AIRPLANE_MODE_SETTINGS varchar(100) NOT NULL;
+ALTER TABLE DEPENDENT_PACKAGE_TABLE ADD DEPENDENT_PACKAGE_WIFI_SETTINGS varchar(100) NOT NULL;
+ALTER TABLE CURRENT_TABLE ADD CURRENT_PROTECT_VERSION varchar(45) NOT NULL;
+
+ALTER TABLE USER_TABLE ADD USER_APP_STATUS varchar(45) NOT NULL;
+
+ALTER TABLE DEPENDENT_PACKAGE_TABLE drop DEPENDENT_PACKAGE_DATA_ROAMING_SETTINGS;
+
+================================================	
+
+디비 한글 깨짐 : http://blog.beany.co.kr/archives/405
+CREATE TABLE `testTable` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `tem1` varchar(128) DEFAULT NULL,
+  `tem2` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+
+================================================
+
+
+www.cafe24.com
+
+
+SSH :
+주소 : teamfaith.cafe24.com
+ID : teamfaith
+PW : lge.12345
+
+
+Cafe24
+
+
+
+http://happybead.tistory.com/478
+
+
+
+
+SSH :
+주소 : teamfaith.cafe24.com
+ID : teamfaith
+
