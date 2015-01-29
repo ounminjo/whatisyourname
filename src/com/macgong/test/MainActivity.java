@@ -1,22 +1,18 @@
 package com.macgong.test;
-import android.support.v7.app.ActionBarActivity;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 	//PhoneStateCheckListener phoneCheckListener;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 
 		//phoneCheckListener = new PhoneStateCheckListener(this);
@@ -24,13 +20,13 @@ public class MainActivity extends ActionBarActivity {
 		/*TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		telephonyManager.listen(phoneCheckListener,
 				PhoneStateListener.LISTEN_CALL_STATE);*/
-		 Button btn_play = (Button) findViewById(R.id.ServiceStart);
+		 Button btn_play = (Button) findViewById(R.id.ServiceStart);		//수신화면 서비스 시작 버튼
 		 btn_play.setOnClickListener(new View.OnClickListener(){
 			 public void onClick(View v){
 				 startService(new Intent("com.macgong.test"));
 			 }
 		 });
-	     Button btn_stop = (Button) findViewById(R.id.ServiceEnd);
+	     Button btn_stop = (Button) findViewById(R.id.ServiceEnd);		//수신화면 서비스 종료 버튼
 	     btn_stop.setOnClickListener(new View.OnClickListener(){
 	            public void onClick(View v) {
 	                stopService(new Intent("com.macgong.test"));
