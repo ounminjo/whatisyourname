@@ -1,5 +1,7 @@
 package com.macgong.test;
 
+import com.macgong.test.R.drawable;
+
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,36 +91,44 @@ public class ServiceClass extends Service {
 		@Override
 		public void onCallStateChanged(int state, String incomingNumber) {
 			if (state == TelephonyManager.CALL_STATE_IDLE) {
-				Toast.makeText(mIncomingCallService,
+				/*Toast.makeText(mIncomingCallService,
 						"STATE_IDLE : Incoming number " + incomingNumber,
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_SHORT).show();*/
 				if(mWindowManager != null) {		// IDLE 상태이지만 팝업뷰가 사라지지 않았다면 삭제시켜줘야한다.
 					if(mLinearLayoutPopView != null){
 						mWindowManager.removeView(mLinearLayoutPopView);
 						mLinearLayoutPopView = null;
 						mWindowManager = null;
-					}
-					
-					
+					}	
 				}
-				
 			} else if (state == TelephonyManager.CALL_STATE_RINGING) {
 				
+				String callerInfo = Group.getData(incomingNumber);
 				mLinearLayoutPopView  = new LinearLayout(mIncomingCallService);
 				mLinearLayoutPopView.setOnTouchListener(mViewTouchListener);
-				mLinearLayoutPopView.setBackgroundColor(Color.BLACK);
+				mLinearLayoutPopView.setOrientation(LinearLayout.VERTICAL);
+				mLinearLayoutPopView.setBackgroundResource(R.drawable.popupbackground);
 				
-				LinearLayout.LayoutParams mLayoutParamsPopUpView = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+				
+				LinearLayout.LayoutParams mLayoutParamsPopUpView = new LinearLayout.LayoutParams(720,720);
 				mLinearLayoutPopView.setLayoutParams(mLayoutParamsPopUpView);
 				
 				
 				//텍스트 뷰 생성
 				TextView textViewCallNumber = new TextView(mIncomingCallService);
 				
-				textViewCallNumber.setText("전화번호 : "+ incomingNumber);
+				textViewCallNumber.setText(callerInfo);
 				textViewCallNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
 				textViewCallNumber.setTextColor(Color.WHITE);
-				mLinearLayoutPopView.addView(textViewCallNumber);
+				ImageView top = new ImageView(mIncomingCallService);
+				top.setBackgroundResource(R.drawable.popup);
+				mLinearLayoutPopView.addView(top);
+				LinearLayout text = new LinearLayout(mIncomingCallService);
+				text.setOrientation(LinearLayout.HORIZONTAL);
+				text.addView(textViewCallNumber);
+				//mLinearLayoutPopView.addView(textViewCallNumber);
+				
+				
 				
 				
 				/* 닫기기 버튼 추가*/
@@ -135,7 +146,8 @@ public class ServiceClass extends Service {
 						}
 					}
 				});
-				mLinearLayoutPopView.addView(buttonClose);
+				text.addView(buttonClose);
+				mLinearLayoutPopView.addView(text);
 				
 				//최상위 윈도우에 넣기 위한 설정
 				mParams = new WindowManager.LayoutParams(

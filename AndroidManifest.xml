@@ -7,14 +7,16 @@
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="17" />
-	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
     </uses-permission>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <receiver
@@ -26,26 +28,59 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <service android:name="ServiceClass">
 
-                <intent-filter>
+        <service android:name=".ServiceClass" >
+            <intent-filter>
+                <action android:name="com.macgong.test" />
 
-                       <action android:name="com.macgong.test"/>
-
-                       <category android:name="android.intent.category.DEFAULT"/>
-
-                </intent-filter>
-
-         </service>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Loading"
+            android:label="@string/title_activity_loading" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Depth1_1"
+            android:label="@string/title_activity_depth1_1" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_11"
+            android:label="@string/title_activity_depth1_1_1" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_10"
+            android:label="@string/title_activity_depth1_1_10" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_13"
+            android:label="@string/title_activity_depth1_1_13" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_14"
+            android:label="@string/title_activity_depth1_1_14" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_15"
+            android:label="@string/title_activity_depth1_1_15" >
+        </activity>
+        <activity
+            android:name=".Depth1_1_12"
+            android:label="@string/title_activity_depth1_1_12" >
+        </activity>
+        <activity
+            android:name=".Test2"
+            android:label="@string/title_activity_test2" >
         </activity>
     </application>
 

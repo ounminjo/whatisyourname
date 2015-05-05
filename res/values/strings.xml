@@ -4,5 +4,14 @@
     <string name="app_name">Test</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_loading">Loading</string>
+    <string name="title_activity_depth1_1">Depth1_1</string>
+    <string name="title_activity_depth1_1_1">Depth1_1_1</string>
+    <string name="title_activity_depth1_1_10">Depth1_1_10</string>
+    <string name="title_activity_depth1_1_13">Depth1_1_13</string>
+    <string name="title_activity_depth1_1_14">Depth1_1_14</string>
+    <string name="title_activity_depth1_1_15">Depth1_1_15</string>
+    <string name="title_activity_depth1_1_12">Depth1_1_12</string>
+    <string name="title_activity_test2">Test2</string>
 
 </resources>
