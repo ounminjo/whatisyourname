@@ -5,14 +5,14 @@
     android:versionName="2.0" >
 
     <uses-sdk
-        android:minSdkVersion="7"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -38,11 +38,11 @@
         </service>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity_Main"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".Loading"
+            android:name=".Activity_Loading"
             android:label="@string/title_activity_loading" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,36 +51,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Depth1_1"
-            android:label="@string/title_activity_depth1_1" >
+            android:name=".Activity_AdminLogin"
+            android:label="@string/title_activity_admin_login" >
         </activity>
         <activity
-            android:name=".Depth1_1_11"
-            android:label="@string/title_activity_depth1_1_1" >
+            android:name=".Activity_Admin"
+            android:label="@string/title_activity_admin" >
         </activity>
         <activity
-            android:name=".Depth1_1_10"
-            android:label="@string/title_activity_depth1_1_10" >
-        </activity>
-        <activity
-            android:name=".Depth1_1_13"
-            android:label="@string/title_activity_depth1_1_13" >
-        </activity>
-        <activity
-            android:name=".Depth1_1_14"
-            android:label="@string/title_activity_depth1_1_14" >
-        </activity>
-        <activity
-            android:name=".Depth1_1_15"
-            android:label="@string/title_activity_depth1_1_15" >
-        </activity>
-        <activity
-            android:name=".Depth1_1_12"
-            android:label="@string/title_activity_depth1_1_12" >
-        </activity>
-        <activity
-            android:name=".Test2"
-            android:label="@string/title_activity_test2" >
+            android:name=".Activity_Search"
+            android:label="@string/title_activity_search_acrivity" >
         </activity>
     </application>
 

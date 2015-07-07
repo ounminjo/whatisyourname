@@ -6,7 +6,7 @@ public class StaticClass {
 	public static final String GROUP_KEY = "GROUP_KEY";
 	public static final String GROUP_NAME = "GROUP_NAME";	
 	public static final String GROUP_DEPTH = "GROUP_DEPTH";
-	public static final String GROUP_PARENT = "GROUP_PARENT";		
+	public static final String GROUP_PARENT_KEY = "GROUP_PARENT_KEY";		
 	
 	public static final String USER_COLUMS[] = {"USER_PHONE", "USER_NAME", "USER_STUDENT_NUMBER", "USER_GROUP_KEY"};	
 	public static final String USER_TABLE = "USER_TABLE";	

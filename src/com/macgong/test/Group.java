@@ -13,7 +13,7 @@ public class Group {
 	private String mGroupName;
 	private String mGroupKey;
 	private int mDapth;
-
+	public static ArrayList<Map<String, String>> mAdmin;
 	private static Group mRootTreeOfGroup = null;
 
 	public Group(String groupKey, String groupName, int dapth, Group parent) {
@@ -23,6 +23,10 @@ public class Group {
 		mGroupKey = groupKey;
 		mGroupName = groupName;
 		mDapth = dapth;
+	}
+
+	public static void InitAdmin(ArrayList<Map<String, String>> input_admin) {
+		mAdmin = input_admin;
 	}
 
 	public void addData(Map<String, String> input) {
@@ -60,8 +64,7 @@ public class Group {
 				// 연결된 자식들중에 같은 Key를 가진 그룹이 있다면 중단!
 				Log.e("e", "addChildren에서오류, 동일한 Key값을 가진 child그룹이 존재!");
 				return;
-			} else if (input.getGroupKey().compareTo(
-					mChildren.get(i).getGroupKey()) < 0) {
+			} else if (input.getGroupKey().compareTo(mChildren.get(i).getGroupKey()) < 0) {
 				mChildren.add(i, input);
 				return;
 			}
@@ -73,10 +76,13 @@ public class Group {
 	public static Group makeGroup(ArrayList<Map<String, String>> input) {
 		int maxDepthSize = 0;
 		for (int i = 0; i < input.size(); i++) {
-			if (maxDepthSize < Integer.parseInt(input.get(i).get(
-					StaticClass.GROUP_DEPTH))) { // 만들려는 그룹의 깊이가 한계깊이보다 클때
-				maxDepthSize = Integer.parseInt(input.get(i).get(
-						StaticClass.GROUP_DEPTH)); // 한계깊이 갱신
+			if (maxDepthSize < Integer.parseInt(input.get(i).get(StaticClass.GROUP_DEPTH))) { // 만들려는
+																								// 그룹의
+																								// 깊이가
+																								// 한계깊이보다
+																								// 클때
+				maxDepthSize = Integer.parseInt(input.get(i).get(StaticClass.GROUP_DEPTH)); // 한계깊이
+																							// 갱신
 			}
 		}
 
@@ -94,23 +100,24 @@ public class Group {
 		}
 
 		// Root 생성
-		Group treeOfGroup = new Group(StaticClass.GROUP_TREE_ROOT,
-				StaticClass.GROUP_TREE_ROOT, 0, null);
+		Group treeOfGroup = new Group(StaticClass.GROUP_TREE_ROOT, StaticClass.GROUP_TREE_ROOT, 0, null);
 
 		for (int i = 0; i < groupList.size(); i++) {
-			Group parent = getGroup(treeOfGroup,
-					groupList.get(i).get(StaticClass.GROUP_PARENT));
-			parent.addChildren(new Group(groupList.get(i).get(
-					StaticClass.GROUP_KEY), groupList.get(i).get(
-					StaticClass.GROUP_NAME), Integer.parseInt(groupList.get(i)
-					.get(StaticClass.GROUP_DEPTH)), parent));
+			Group parent = getGroup(treeOfGroup, groupList.get(i).get(StaticClass.GROUP_PARENT_KEY));
+			parent.addChildren(
+					new Group(groupList.get(i).get(StaticClass.GROUP_KEY), groupList.get(i).get(StaticClass.GROUP_NAME),
+							Integer.parseInt(groupList.get(i).get(StaticClass.GROUP_DEPTH)), parent));
 		}
 		return treeOfGroup;
 	}
-	public static ArrayList<Group> getParentGroups(int Depth){
-		ArrayList<Group> m_ParentList= Group.getRootTreeOfGroup().getChildren(); 
-		if(Depth != 0 || Depth != 1){
-			for(int i=0;i<Depth;i++){
+
+	public static ArrayList<Group> getParentGroups(int Depth) {
+		ArrayList<Group> m_ParentList = Group.getRootTreeOfGroup().getChildren();
+		if (Depth == 1) {
+			return m_ParentList;
+		}
+		if (Depth != 0) {
+			for (int i = 0; i < Depth; i++) {
 				m_ParentList = m_ParentList.get(0).getChildren();
 			}
 		}
@@ -147,8 +154,6 @@ public class Group {
 		}
 		return null;
 	}
-	
-	
 
 	public static Group getGroup(String groupKey) {
 		Group treeOfGroup = getRootTreeOfGroup();
@@ -173,26 +178,53 @@ public class Group {
 	}
 
 	public static String getData(String incomingNumber) {
-		String newIncoming = incomingNumber.substring(0,3)+"-"+incomingNumber.substring(3,7)+"-"+incomingNumber.substring(7,11);
-		
+		String newIncoming = incomingNumber.substring(0, 3) + "-" + incomingNumber.substring(3, 7) + "-"
+				+ incomingNumber.substring(7, 11);
+
 		StringBuffer test = new StringBuffer("");
 		Group temp;
-		
+
 		ArrayList<Map<String, String>> AllData = getDataAll(Group.getRootTreeOfGroup());
-		
+
 		for (int i = 0; i < AllData.size(); i++) {
-			
+
 			if (AllData.get(i).get(StaticClass.USER_PHONE).equals(newIncoming)) {
-				
+
 				temp = getGroup(AllData.get(i).get(StaticClass.USER_GROUP_KEY));
-				test.insert(0,AllData.get(i).get(StaticClass.USER_NAME));
-				while(temp != getRootTreeOfGroup()){
-					test.insert(0,temp.mGroupName+" ");
+				test.insert(0, AllData.get(i).get(StaticClass.USER_NAME));
+				while (temp != getRootTreeOfGroup()) {
+					test.insert(0, temp.mGroupName + " ");
 					temp = temp.getParent();
-				}		
+				}
 			}
 		}
 		return test.toString();
+	}
+
+	public static ArrayList<Map<String, String>> getMemberByName(String name) {
+
+		ArrayList<Map<String, String>> result = new ArrayList<Map<String, String>>();
+		ArrayList<Map<String, String>> AllData = getDataAll(Group.getRootTreeOfGroup());
+
+		for (int i = 0; i < AllData.size(); i++) {
+			if (AllData.get(i).get(StaticClass.USER_NAME).equals(name)) {
+				result.add(AllData.get(i));
+			}
+		}
+		return result;
+	}
+
+	public static ArrayList<Map<String, String>> getMemberByNumber(String phone) {
+
+		ArrayList<Map<String, String>> result = new ArrayList<Map<String, String>>();
+		ArrayList<Map<String, String>> AllData = getDataAll(Group.getRootTreeOfGroup());
+
+		for (int i = 0; i < AllData.size(); i++) {
+			if (AllData.get(i).get(StaticClass.USER_PHONE).equals(phone)) {
+				result.add(AllData.get(i));
+			}
+		}
+		return result;
 	}
 
 	public static ArrayList<Map<String, String>> getDataAll(Group treeOfGroup) {
@@ -205,8 +237,7 @@ public class Group {
 			returnValue = new ArrayList<Map<String, String>>();
 		}
 		for (int i = 0; i < treeOfGroup.getChildren().size(); i++) {
-			ArrayList<Map<String, String>> childData = getDataAll(treeOfGroup
-					.getChildren().get(i));
+			ArrayList<Map<String, String>> childData = getDataAll(treeOfGroup.getChildren().get(i));
 			if (childData != null) {
 				for (int k = 0; k < childData.size(); k++) {
 					returnValue.add(childData.get(k));
@@ -215,7 +246,6 @@ public class Group {
 		}
 		return returnValue;
 	}
-	
 
 	public static Group getRootTreeOfGroup() {
 		return mRootTreeOfGroup;
@@ -230,8 +260,7 @@ public class Group {
 	}
 
 	public static void setGroupData(Group treeOfGroup, Map<String, String> data) {
-		Group group = getGroup(treeOfGroup,
-				data.get(StaticClass.USER_GROUP_KEY));
+		Group group = getGroup(treeOfGroup, data.get(StaticClass.USER_GROUP_KEY));
 		group.addData(data);
 	}
 

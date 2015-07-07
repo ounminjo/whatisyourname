@@ -1,6 +1,5 @@
 package com.macgong.test;
 
-import com.macgong.test.R.drawable;
 
 import android.app.Service;
 import android.content.Intent;
@@ -16,7 +15,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
@@ -49,6 +47,7 @@ public class ServiceClass extends Service {
 		phoneCheckListener = new PhoneStateCheckListener(this);
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		telephonyManager.listen(phoneCheckListener,PhoneStateListener.LISTEN_CALL_STATE);
+		Toast.makeText(getApplicationContext(), "Service 시작 성공", Toast.LENGTH_SHORT).show();
 	}
 	
 	private OnTouchListener mViewTouchListener = new OnTouchListener() {
@@ -200,5 +199,6 @@ public class ServiceClass extends Service {
 				mWindowManager = null;
 			}
 		}
+		Toast.makeText(getApplicationContext(), "Service 종료 성공", Toast.LENGTH_SHORT).show();
 	}
 }

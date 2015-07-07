@@ -13,5 +13,8 @@
     <string name="title_activity_depth1_1_15">Depth1_1_15</string>
     <string name="title_activity_depth1_1_12">Depth1_1_12</string>
     <string name="title_activity_test2">Test2</string>
+    <string name="title_activity_admin_login">AdminLoginActivity</string>
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="title_activity_search_acrivity">SearchAcrivity</string>
 
 </resources>

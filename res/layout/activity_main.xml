@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.macgong.test.MainActivity" >
+    tools:context="com.macgong.test.Activity_Main" >
 
     <ImageView
         android:id="@+id/Background_up"
@@ -26,7 +26,7 @@
         android:src="@drawable/background_down" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/btn_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,24 +35,10 @@
         android:background="#00ff0000"
         android:src="@drawable/all" />
 
-    <Button
-        android:id="@+id/ServiceStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="서비스 시작" />
-
-    <Button
-        android:id="@+id/ServiceEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/ServiceStart"
-        android:text="서비스 종료" />
+   
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btn_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -62,20 +48,21 @@
         android:src="@drawable/admin" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btn_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ServiceEnd"
         android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/btn_admin"
+        android:layout_marginRight="77dp"
         android:background="#00ff0000"
         android:src="@drawable/setting" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_toRightOf="@+id/btn_reset"
         android:background="#00ff0000"
         android:src="@drawable/btn_search" />
     
